@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { CaptainService } from '../shared/services/captain.service';
 
 @Component({
   selector: 'app-captain',
@@ -7,14 +8,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CaptainComponent implements OnInit {
 
-  constructor() { }
+  constructor(private captainService: CaptainService) { }
 
   ngOnInit(): void {
+    this.captainService.index();
   }
 
-getLegoSet(){
 
-}
 
   // onSaveBrickset($event: Brickset) {
   //   this.savedBrickset = $event;
