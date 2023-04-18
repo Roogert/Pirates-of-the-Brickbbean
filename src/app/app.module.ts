@@ -13,6 +13,8 @@ import { TreasureChestComponent } from './treasure-chest/treasure-chest.componen
 import { FormsModule } from '@angular/forms';
 import { HttpClient, HttpClientModule } from '@angular/common/http'
 import { NavbarComponent } from './shared/navbar/navbar.component';
+import { LoginComponent } from './shared/auth/login/login.component';
+import { SignoutComponent } from './shared/auth/signout/signout.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +23,9 @@ import { NavbarComponent } from './shared/navbar/navbar.component';
     NavbarComponent,
     FooterComponent,
     LandingComponent,
-    TreasureChestComponent
+    TreasureChestComponent,
+    LoginComponent,
+    SignoutComponent
   ],
   imports: [
     BrowserModule,
