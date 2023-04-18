@@ -1,7 +1,12 @@
 <!-- Load an icon library -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+/>
 <style>
-  body {font-family: Arial, Helvetica, sans-serif;}
+  body {
+    font-family: Arial, Helvetica, sans-serif;
+  }
 
   .navbar {
     width: 100%;
@@ -20,12 +25,10 @@
 
   .navbar a:hover {
     background-color: #0b034e;
-
   }
 
-
   .active {
- background-color: rgb(192, 143, 37);
+    background-color: rgb(192, 143, 37);
   }
 
   @media screen and (max-width: 500px) {
@@ -38,24 +41,24 @@
   .title {
     font-size: 30em;
     font-weight: bold;
-}
-.ul {
-text-align: center;
-}
-
-  </style>
-  <body>
-
-<div class="navbar">
-  <a href="#default" class="title">Pirates of the Brickbbean</a>
-  <ul>
-    <a class="nav-link" routerLink="/captain" routerLinkActive="active"
-        ><i class="fa fa-fw fa-user"></i>Captains</a>
-    <a class="nav-link" routerLink="/treasure-chest" routerLinkActive="active"
-        ><i class="fa fa-fw fa-anchor"></i>Treasure Chest</a>
-  </ul>
-</div>
-
-
-
+  }
+  .ul {
+    text-align: center;
+  }
+</style>
+<body>
+  <div class="navbar">
+    <a href="#default" class="title">Pirates of the Brickbbean</a>
+    <ul>
+      <a class="nav-link" routerLink="/captain" routerLinkActive="active"
+        ><i class="fa fa-fw fa-user"></i>Captains</a
+      >
+      <a class="nav-link" routerLink="/treasure-chest" routerLinkActive="active"
+        ><i class="fa fa-fw fa-anchor"></i>Treasure Chest</a
+      >
+      <a class="nav-link" routerLink="/login" routerLinkActive="active"
+        ><i class="fa fa-fw fa-anchor"></i>Login</a
+      >
+    </ul>
+  </div>
 </body>
