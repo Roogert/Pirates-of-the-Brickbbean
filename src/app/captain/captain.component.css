@@ -1,5 +1,6 @@
 .container {
   margin-top: 2em;
+  margin-bottom: 3em;
   background-color: rgba(151, 101, 8, 0.658);
   height: 15em;
   width: 30em;
@@ -25,4 +26,9 @@
   align-self:  center;
   display:inline-block;
     width:200px;
+}
+
+h1{
+  color: white;
+  font-weight: 1000;
 }

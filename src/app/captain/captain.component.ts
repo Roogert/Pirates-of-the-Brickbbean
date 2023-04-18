@@ -12,4 +12,15 @@ export class CaptainComponent implements OnInit {
   ngOnInit(): void {
   }
 
+getLegoSet(){
+
+}
+
+  // onSaveBrickset($event: Brickset) {
+  //   this.savedBrickset = $event;
+  //   setTimeout(() => {
+  //     this.savedBrickset = null;
+  //   }, 3000);
+
+
 }
