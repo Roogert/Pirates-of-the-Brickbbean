@@ -50,15 +50,19 @@
   <div class="navbar">
     <a href="#default" class="title">Pirates of the Brickbbean</a>
     <ul>
-      <a class="nav-link" routerLink="/captain" routerLinkActive="active"
-        ><i class="fa fa-fw fa-user"></i>Captains</a
-      >
-      <a class="nav-link" routerLink="/treasure-chest" routerLinkActive="active"
-        ><i class="fa fa-fw fa-anchor"></i>Treasure Chest</a
-      >
-      <a class="nav-link" routerLink="/login" routerLinkActive="active"
-        ><i class="fa fa-fw fa-anchor"></i>Login</a
-      >
+      <ul class="nav-item active" *ngIf="isAuthenticated">
+        <a class="nav-link" routerLink="/captain" routerLinkActive="active"><i class="fa fa-fw fa-user"></i>Captains</a>
+        <a class="nav-link" routerLink="/treasure-chest" routerLinkActive="active"><i class="fa fa-fw fa-anchor"></i>Treasure Chest</a>
+      </ul>
+
+      <!-- <a class="nav-link" routerLink="/login" routerLinkActive="active"><i class="fa fa-fw fa-anchor"></i>Login</a> -->
+
+      <li class="nav-item" >
+        <a class="nav-link" routerLink="/login" routerLinkActive="active">Login</a>
+      </li>
+      <li class="nav-item" *ngIf="isAuthenticated" (click)="onLogout()">
+        <a class="nav-link" routerLink="/auth" routerLinkActive="active">Sign Out</a>
+      </li>
     </ul>
   </div>
 </body>

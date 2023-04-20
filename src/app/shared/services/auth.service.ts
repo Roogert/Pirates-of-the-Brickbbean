@@ -1,23 +1,42 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { Router } from '@angular/router';
+import { User } from '../User/user.model';
+import { get } from 'http';
+import { from } from 'rxjs'
 
 interface LoginResponse {
   jwt: string;
 }
 
+// export interface AuthResponseData {
+//   kind: string;
+//   idToken: string;
+//   email: string;
+//   refreshToken: string;
+//   expiresIn: string;
+//   localId: string;
+//     // For Sign In Only
+//   registered?: boolean;
+// }
+
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
-  constructor(private http: HttpClient, private router: Router) {}
+  constructor (private http: HttpClient,
+              private router: Router) {}
 
-  private user = new BehaviorSubject<any>(null);
+  user = new BehaviorSubject<any>(null);
 
-  getCurrentUsers() {
-    return !!this.user.value;
-  }
+  // getCurrentUser() {
+  //   return !!this.user.value;
+  // }
+
+  // currentUser():Observable<string> {
+  //   return from(this.getCurrentUser)
+  // }
 
   login(email: string, password: string) {
     return this.http

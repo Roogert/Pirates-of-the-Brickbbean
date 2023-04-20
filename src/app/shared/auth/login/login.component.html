@@ -1,5 +1,6 @@
+<div class="container">
 <form (ngSubmit)="onSubmit(loginForm)" #loginForm="ngForm">
-  <div>
+  <div class="box">
     <label for="email">Email:</label>
     <input
       type="email"
@@ -8,8 +9,9 @@
       name="email"
       required
     />
-  </div>
-  <div>
+  <!-- </div>
+  <div> -->
+    <br>
     <label for="password">Password:</label>
     <input
       type="password"
@@ -18,6 +20,9 @@
       name="password"
       required
     />
+    <br>
+    <button class="btn" type="submit">Login</button>
   </div>
-  <button type="submit">Login</button>
+
 </form>
+</div>
