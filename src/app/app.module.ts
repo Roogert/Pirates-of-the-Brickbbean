@@ -11,10 +11,14 @@ import { RouterModule } from '@angular/router';
 import { AppRoutingModule } from './app-routing.module';
 import { TreasureChestComponent } from './treasure-chest/treasure-chest.component';
 import { FormsModule } from '@angular/forms';
-import { HttpClient, HttpClientModule } from '@angular/common/http'
+import { HTTP_INTERCEPTORS, HttpClient, HttpClientModule } from '@angular/common/http'
 import { NavbarComponent } from './shared/navbar/navbar.component';
 import { LoginComponent } from './shared/auth/login/login.component';
 import { SignoutComponent } from './shared/auth/signout/signout.component';
+import { AuthInterceptorService } from './shared/services/auth-interceptor.service';
+import { AuthService } from './shared/services/auth.service';
+import { LocalStorageService } from './shared/services/local-storage.service';
+
 
 @NgModule({
   declarations: [
@@ -32,9 +36,19 @@ import { SignoutComponent } from './shared/auth/signout/signout.component';
     RouterModule,
     AppRoutingModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+
   ],
-  providers: [],
+  providers: [
+    AuthService,
+    LocalStorageService,
+  {
+  provide: HTTP_INTERCEPTORS,
+  useClass: AuthInterceptorService,
+  multi: true
+  }
+  ],
   bootstrap: [AppComponent]
 })
+
 export class AppModule { }

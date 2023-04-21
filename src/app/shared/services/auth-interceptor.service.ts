@@ -1,5 +1,6 @@
 import { AuthService } from "./auth.service";
 import { Injectable } from "@angular/core";
+import { LocalStorageService } from "./local-storage.service";
 import {
   HttpHandler,
   HttpInterceptor,
@@ -8,12 +9,17 @@ import {
 } from "@angular/common/http";
 import { exhaustMap, take } from "rxjs/operators";
 
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+}
+)
 export class AuthInterceptorService implements HttpInterceptor {
-  constructor(private authService: AuthService) {}
+  constructor(private authService: AuthService, private storage: LocalStorageService) {}
 
   intercept(req: HttpRequest<any>, next: HttpHandler) {
-    return this.authService.currentUser.pipe(
+    const user = this.storage.getItem('user')
+    const token = this.storage.getItem('accessToken')
+    return this.authService.user.pipe(
       take(1),
       exhaustMap((user) => {
         // Make sure we have a user
@@ -21,7 +27,7 @@ export class AuthInterceptorService implements HttpInterceptor {
 
         // Modify the req to have access to the token
         const modifiedReq = req.clone({
-          params: new HttpParams().set("auth", user.token),
+          setHeaders: { 'Authorization': `Bearer ${token}`},
         });
 
         // Return the modified request

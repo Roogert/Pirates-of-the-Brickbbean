@@ -4,7 +4,8 @@ import { BehaviorSubject, Observable } from 'rxjs';
 import { Router } from '@angular/router';
 import { User } from '../User/user.model';
 import { get } from 'http';
-import { from } from 'rxjs'
+import { from } from 'rxjs';
+import { LocalStorageService } from './local-storage.service';
 
 interface LoginResponse {
   jwt: string;
@@ -26,7 +27,8 @@ interface LoginResponse {
 })
 export class AuthService {
   constructor (private http: HttpClient,
-              private router: Router) {}
+              private router: Router,
+              private storage: LocalStorageService) {}
 
   user = new BehaviorSubject<any>(null);
 
@@ -34,9 +36,9 @@ export class AuthService {
   //   return !!this.user.value;
   // }
 
-  // currentUser():Observable<string> {
-  //   return from(this.getCurrentUser)
-  // }
+  setCurrentUser(user: User) {
+    this.user.next(user) // sets the currentUserSubject
+  }
 
   login(email: string, password: string) {
     return this.http
@@ -47,6 +49,8 @@ export class AuthService {
       })
       .subscribe((response: any) => {
         this.user.next(response.payload.user);
+        this.storage.setItem('user', response.payload.user)
+        this.storage.setItem('accessToken', response.payload.user.token.value)
         this.router.navigate(['']);
       });
   }
@@ -56,6 +60,8 @@ export class AuthService {
       .delete('http://localhost:3000/api/v1/users/logout')
       .subscribe(() => {
         this.user.next(null);
+        this.storage.removeItem('user');
+        this.storage.removeItem('accessToken');
       });
   }
 
