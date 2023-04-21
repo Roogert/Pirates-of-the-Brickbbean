@@ -30,11 +30,9 @@ export class AuthService {
               private router: Router,
               private storage: LocalStorageService) {}
 
-  user = new BehaviorSubject<any>(null);
+  user = new BehaviorSubject<any>(this.storage.getItem('currentUser'));
 
-  // getCurrentUser() {
-  //   return !!this.user.value;
-  // }
+
 
   setCurrentUser(user: User) {
     this.user.next(user) // sets the currentUserSubject
@@ -48,10 +46,11 @@ export class AuthService {
         password_confirmation: password,
       })
       .subscribe((response: any) => {
-        this.user.next(response.payload.user);
-        this.storage.setItem('user', response.payload.user)
-        this.storage.setItem('accessToken', response.payload.user.token.value)
-        this.router.navigate(['']);
+        this.setCurrentUser(response.payload.user);
+        this.storage.setItem('currentUser', response.payload.user)
+        this.router.navigate(['']).then(r => {
+          return r
+        });
       });
   }
 
@@ -60,8 +59,7 @@ export class AuthService {
       .delete('http://localhost:3000/api/v1/users/logout')
       .subscribe(() => {
         this.user.next(null);
-        this.storage.removeItem('user');
-        this.storage.removeItem('accessToken');
+        this.storage.removeItem('currentUser');
       });
   }
 

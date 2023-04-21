@@ -3,49 +3,6 @@
   rel="stylesheet"
   href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
 />
-<style>
-  body {
-    font-family: Arial, Helvetica, sans-serif;
-  }
-
-  .navbar {
-    width: 100%;
-    background-color: #361902;
-    overflow: auto;
-  }
-
-  .navbar a {
-    float: left;
-    padding: 12px;
-    color: rgb(255, 255, 255);
-    text-decoration: none;
-    font-size: 17px;
-    border-radius: 10px;
-  }
-
-  .navbar a:hover {
-    background-color: #0b034e;
-  }
-
-  .active {
-    background-color: rgb(192, 143, 37);
-  }
-
-  @media screen and (max-width: 500px) {
-    .navbar a {
-      float: none;
-      display: block;
-    }
-  }
-
-  .title {
-    font-size: 30em;
-    font-weight: bold;
-  }
-  .ul {
-    text-align: center;
-  }
-</style>
 <body>
   <div class="navbar">
     <a href="#default" class="title">Pirates of the Brickbbean</a>
@@ -53,16 +10,13 @@
       <li class="nav-item active" *ngIf="isAuthenticated">
         <a class="nav-link" routerLink="/captain" routerLinkActive="active"><i class="fa fa-fw fa-user"></i>Captains</a>
         <a class="nav-link" routerLink="/treasure-chest" routerLinkActive="active"><i class="fa fa-fw fa-anchor"></i>Treasure Chest</a>
+        <a class="nav-link" routerLink="/auth" (click)="onLogout()" routerLinkActive="active"><i class="fa fa-fw fa-times-circle-o"></i>Logout</a>
+      </li>
+      <li class="nav-item active" *ngIf="!isAuthenticated">
+        <a class="nav-link" routerLink="/login" routerLinkActive="active"><i class="fa fa-fw fa-sign-in"></i>Login</a>
       </li>
 
       <!-- <a class="nav-link" routerLink="/login" routerLinkActive="active"><i class="fa fa-fw fa-anchor"></i>Login</a> -->
-
-      <li class="nav-item" >
-        <a class="nav-link" routerLink="/login" routerLinkActive="active">Login</a>
-      </li>
-      <li class="nav-item" *ngIf="isAuthenticated" (click)="onLogout()">
-        <a class="nav-link" routerLink="/auth" routerLinkActive="active">Sign Out</a>
-      </li>
     </ul>
   </div>
 </body>
